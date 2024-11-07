@@ -11,8 +11,8 @@
 
 **Router** - Takes in packages via input lanes, spits them out onto output lanes based on their labels. Lanes directions and their shipping labels be configured in the GUI.
 
-Package items will display their contents and their shipping label when hovered over in the inventory.
-**If you ever encounter a package item with no shipping label, no contents, or both, REPORT A BUG ON THE GITHUB REPOSITORY and DO NOT UNPACK IT!**
+Package items will display their contents and their shipping label when hovered over in the inventory.  
+**If you ever encounter a package item with no shipping label, no contents, or both, REPORT A BUG ON THE GITHUB REPOSITORY and DO NOT UNPACK IT!**  
 **When reporting a bug like this, please state how the package was created. If you were given it by another player, you should ask them.**
 
 The technology to unlock these machines has Logistics 2 as its prerequisite and requires 75 of both red and green science, similar to the Railway tech.
