@@ -1,3 +1,5 @@
+## The 0.1.1 patch is out now! Update ASAP, there are many essential bugfixes!
+
 > Pack. Label. Ship. Unpack. Repeat.
 # Package Logistics
 

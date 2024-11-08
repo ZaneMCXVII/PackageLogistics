@@ -1,0 +1,14 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.1.1
+Date: 11/8/2024
+  Bugfixes:
+    - Fixed a crash upon unpacking a package
+    - The Router no longer creates annoying chatspam
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 11/7/2024
+  Major Features:
+    - Initial release
+    - Packer; Packs items into labeled packages
+    - Router; Sorts packages based off label
+    - Unpacker; Unpacks packages
