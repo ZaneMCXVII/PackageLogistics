@@ -115,10 +115,11 @@ script.on_event(defines.events.on_tick, function(event)
 			storage.packers[unitNumber].products_finished = packer.products_finished
 			local recipe = packer.get_recipe()
 			local inventory = packer.get_output_inventory()
-			inventory[1].set_tag("packagedItem", recipe.ingredients[1].name)
-			inventory[1].set_tag("packagedAmount", recipe.ingredients[1].amount)
-			inventory[1].set_tag("shippingLabel", storage.packers[unitNumber].current_label)
-			inventory[1].custom_description = {"", "Package contents: ", tostring(recipe.ingredients[1].amount).."x ".."[item="..recipe.ingredients[1].name.."]", "\n", "Shipping label: ", storage.packers[unitNumber].current_label}
+			local stack = inventory[1]
+			stack.set_tag("packagedItem", recipe.ingredients[1].name)
+			stack.set_tag("packagedAmount", recipe.ingredients[1].amount)
+			stack.set_tag("shippingLabel", storage.packers[unitNumber].current_label)
+			stack.custom_description = {"", "Package contents: ", tostring(recipe.ingredients[1].amount).."x ".."[item="..recipe.ingredients[1].name.."]", "\n", "Shipping label: ", storage.packers[unitNumber].current_label}
 		end
 		::continuelol:: -- great label
 	end
