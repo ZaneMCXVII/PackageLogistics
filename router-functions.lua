@@ -15,7 +15,7 @@ function router_funcs.getRouterLaneBelt(router, lane)
 	local position = router.position
 	local newPosition = {position.x + routerLanePositionOffsets[lane][1], position.y + routerLanePositionOffsets[lane][2]}
 
-	game.print(serpent.line(newPosition))
+	--game.print(serpent.line(newPosition))
 
 	local belts = router.surface.find_entities_filtered({position = newPosition, type = "transport-belt"})
 	return belts[1]

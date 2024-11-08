@@ -82,7 +82,7 @@ script.on_event({
 	defines.events.on_entity_died
 }, function(event)
 	if event.entity.name == "packer" then
-		game.print("packer destroyed")
+		--game.print("packer destroyed")
 		storage.packers[event.entity.unit_number] = nil
 		for playerIndex, v in pairs(storage.packerGuis) do
 			if v.packerNumber == event.entity.unit_number then
@@ -111,7 +111,7 @@ script.on_event(defines.events.on_tick, function(event)
 		if not packer then goto continuelol end
 		if storage.packers[unitNumber].products_finished < packer.products_finished then
 			-- Packer finished recipe
-			game.print("Packer "..tostring(unitNumber).." finished packing!")
+			--game.print("Packer "..tostring(unitNumber).." finished packing!")
 			storage.packers[unitNumber].products_finished = packer.products_finished
 			local recipe = packer.get_recipe()
 			local inventory = packer.get_output_inventory()
@@ -133,7 +133,7 @@ script.on_event(defines.events.on_tick, function(event)
 		end
 		if storage.unpackers[unitNumber].products_finished < unpacker.products_finished then
 			-- Unpacker finished unpacking
-			game.print("Unpacker "..tostring(unitNumber).." finished unpacking!")
+			--game.print("Unpacker "..tostring(unitNumber).." finished unpacking!")
 			storage.unpackers[unitNumber].products_finished = unpacker.products_finished
 			local currentlyUnpackingInfo = storage.unpackers[unitNumber].currently_unpacking
 			local inventory = unpacker.get_output_inventory()
@@ -149,16 +149,16 @@ script.on_event(defines.events.on_tick, function(event)
 		--router.get_inventory(defines.inventory.chest).set_bar(1)
 		for lane = 1,8 do
 			belt = routerFunctions.getRouterLaneBelt(router, lane)
-			if not belt then game.print("no belt") goto continue end
+			if not belt then goto continue end
 			if routerFunctions.beltFacingTowardsRouter(lane,belt.direction) then
 				if storage.routers[unitNumber].lanes[lane].direction ~= "input" then goto continue end
 				for lineIndex = 1,belt.get_max_transport_line_index() do
 					local line = belt.get_transport_line(lineIndex)
-					game.print(#line ~= 0)
+					--game.print(#line ~= 0)
 					if #line ~= 0 then
 						if line[1].valid_for_read then
 							if line[1].name == "package" then
-								game.print(router.can_insert(line[1]))
+								--game.print(router.can_insert(line[1]))
 								local result = router.insert(line[1])
 								if result then line[1].clear() end
 							end
