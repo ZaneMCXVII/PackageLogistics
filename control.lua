@@ -137,7 +137,7 @@ script.on_event(defines.events.on_tick, function(event)
 			storage.unpackers[unitNumber].products_finished = unpacker.products_finished
 			local currentlyUnpackingInfo = storage.unpackers[unitNumber].currently_unpacking
 			local inventory = unpacker.get_output_inventory()
-			inventory.insert({name=currentlyUnpackinInfo.item,count=currentlyUnpackingInfo.amount})
+			inventory.insert({name=currentlyUnpackingInfo.item,count=currentlyUnpackingInfo.amount})
 		end
 		::continuelolunpack::
 	end
