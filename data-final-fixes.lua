@@ -39,7 +39,8 @@ local unpackingRecipe = {
 	icon = packageItem.icon,
 	icon_size = 64,
 	ingredients = {{type="item", name=packageItem.name, amount=1}},
-	results = unpackResults
+	results = unpackResults,
+	hide_from_player_crafting = true
 }
 
 local packer = {
@@ -194,7 +195,8 @@ local packerRecipe = {
 		{type="item", name="iron-plate", amount=6}
 	},
 	results = {{type="item", name="packer", amount=1}},
-	subgroup = "package-logistics"
+	subgroup = "package-logistics",
+	enabled = false
 }
 
 local unpackerRecipe = {
@@ -209,7 +211,8 @@ local unpackerRecipe = {
 		{type="item", name="iron-plate", amount=6}
 	},
 	results = {{type="item", name="unpacker", amount=1}},
-	subgroup = "package-logistics"
+	subgroup = "package-logistics",
+	enabled = false
 }
 
 local routerRecipe = {
@@ -224,7 +227,8 @@ local routerRecipe = {
 		{type="item", name="iron-plate", amount=6}
 	},
 	results = {{type="item", name="router", amount=1}},
-	subgroup = "package-logistics"
+	subgroup = "package-logistics",
+	enabled = false
 }
 
 data:extend({packageItem,
@@ -253,7 +257,8 @@ for name, item in pairs(data.raw["item"]) do
 		ingredients = {{type="item", name=item.name, amount=math.ceil(item.stack_size/4)}},
 		results = {{type="item", name="package", amount=1}},
 		localised_name = {"recipe-name.package-conversion"},
-		hidden_in_factoriopedia = true
+		hidden_in_factoriopedia = true,
+		hide_from_player_crafting = true
 	}
 	data:extend({itemToPackageConversion})
 end
