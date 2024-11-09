@@ -202,9 +202,35 @@ script.on_event(defines.events.on_gui_opened, function(event)
 	if event.gui_type == defines.gui_type.entity and event.entity.name == "router" then
 		local player = game.get_player(event.player_index)
 		-- Make frame
-		local frame = player.gui.screen.add({type="frame",caption={"entity-name.router"},name="router_main"})
+		local frame = player.gui.screen.add({type="frame",name="router_main",direction="vertical"})
 		frame.auto_center = true
 		frame.style.size = {500,500}
+
+		-- Make titlebar
+		local titlebar = frame.add{type = "flow"}
+  		titlebar.drag_target = frame
+  		titlebar.add{
+    			type = "label",
+    			style = "frame_title",
+    			caption = {"entity-name.router"},
+    			ignored_by_interaction = true,
+  		}
+  		local filler = titlebar.add{
+    			type = "empty-widget",
+   			style = "draggable_space",
+    			ignored_by_interaction = true,
+  		}
+ 		filler.style.height = 24
+  		filler.style.horizontally_stretchable = true
+  		local closeButton = titlebar.add{
+    			type = "sprite-button",
+    			name = "router_close",
+    			style = "frame_action_button",
+    			sprite = "utility/close",
+   			hovered_sprite = "utility/close_black",
+    			clicked_sprite = "utility/close_black",
+    			tooltip = {"gui.close-instruction"},
+  		}
 
 		--Build main UI
 		local mainFrame = frame.add({type="frame",style="inside_shallow_frame_with_padding_and_vertical_spacing",direction="vertical"})
@@ -287,8 +313,6 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		shippingLabelBoxes[6] = shippingLabelFlow3.add({type="textfield",name="shippingLabelBox6"})
 		shippingLabelBoxes[6].enabled = false
 
-		local closeButton = mainFrame.add({type="button",caption={"gui.getmeout"},name="router_close"})
-
 		storage.routerGuis[event.player_index] = {}
 		storage.routerGuis[event.player_index].topFrame = frame
 		storage.routerGuis[event.player_index].laneButtons = laneButtons
@@ -344,7 +368,7 @@ end)
 
 script.on_event(defines.events.on_gui_click, function(event)
 	if starts_with(event.element.name, "router") then
-		game.print(event.element.name)
+		--game.print(event.element.name)
 		if starts_with(event.element.name, "router_lane") then
 			local lane = tonumber(event.element.name:sub(12,13))
 			local gui = storage.routerGuis[event.player_index]
