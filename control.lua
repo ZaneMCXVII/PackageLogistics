@@ -313,6 +313,14 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		shippingLabelBoxes[6] = shippingLabelFlow3.add({type="textfield",name="shippingLabelBox6"})
 		shippingLabelBoxes[6].enabled = false
 
+		local shippingLabelFlow4 = mainFrame.add({type="flow",direction="horizontal",name="shippingLabelFlow4"})
+
+		shippingLabelBoxes[7] = shippingLabelFlow4.add({type="textfield",name="shippingLabelBox7"})
+		shippingLabelBoxes[7].enabled = false
+
+		shippingLabelBoxes[8] = shippingLabelFlow4.add({type="textfield",name="shippingLabelBox8"})
+		shippingLabelBoxes[8].enabled = false
+
 		storage.routerGuis[event.player_index] = {}
 		storage.routerGuis[event.player_index].topFrame = frame
 		storage.routerGuis[event.player_index].laneButtons = laneButtons
@@ -361,8 +369,10 @@ end)
 script.on_event(defines.events.on_gui_closed, function(event)
 	if event.gui_type == defines.gui_type.entity and event.entity.name == "packer" then
 		local player = game.get_player(event.player_index)
-		player.gui.relative.packer_settings.destroy()
-		storage.packerGuis[event.player_index] = nil -- clean up gui object references in storage
+		if player.gui.relative.packer_settings then
+			player.gui.relative.packer_settings.destroy()
+			storage.packerGuis[event.player_index] = nil -- clean up gui object references in storage
+		end
 	end
 end)
 
@@ -383,12 +393,12 @@ script.on_event(defines.events.on_gui_click, function(event)
 			gui.dropDown.selected_index = directionToSelection[config[lane].direction]
 			
 			if storage.routers[router].lanes[lane].direction == "output" then
-				for box = 1, 6 do
+				for box = 1, 8 do
 					gui.shippingLabelBoxes[box].text = storage.routers[router].lanes[lane].labels[box] or ""
 					gui.shippingLabelBoxes[box].enabled = true
 				end
 			else
-				for box = 1, 6 do
+				for box = 1, 8 do
 					gui.shippingLabelBoxes[box].text = ""
 					gui.shippingLabelBoxes[box].enabled = false
 				end
@@ -454,11 +464,19 @@ script.on_event(defines.events.on_gui_text_changed, function(event)
 end)
 
 -- no breaking save files lol
---[[script.on_configuration_changed(function(config_changed_data)
+script.on_configuration_changed(function(config_changed_data)
     if config_changed_data.mod_changes["packagelogistics"] then
         for _, player in pairs(game.players) do
-            local main_frame = player.gui.screen.main_frame
-            if main_frame ~= nil then toggle_interface(player) end
+            local packerUI = player.gui.relative.packer_settings
+	    if packerUI then
+		    packerUI.destroy()
+		    storage.packerGuis[player.index] = nil
+	    end
+	    local routerUI = player.gui.screen.router_main
+	    if routerUI then
+		    routerUI.destroy()
+		    storage.routerGuis[player.index] = nil
+	    end
         end
     end
-end)]]--
+end)
