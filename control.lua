@@ -427,12 +427,12 @@ script.on_event(defines.events.on_gui_selection_state_changed, function(event)
 		gui.laneButtons[lane].sprite = routerArrowSprites[lane][selectionToDirection[event.element.selected_index]]
 
 		if router.lanes[lane].direction == "output" then
-			for box = 1, 6 do
+			for box = 1, 8 do
 				gui.shippingLabelBoxes[box].text = router.lanes[lane].labels[box] or ""
 				gui.shippingLabelBoxes[box].enabled = true
 			end
 		else
-			for box = 1, 6 do
+			for box = 1, 8 do
 				gui.shippingLabelBoxes[box].text = ""
 				gui.shippingLabelBoxes[box].enabled = false
 			end
