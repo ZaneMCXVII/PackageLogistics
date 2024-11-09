@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.2
+Date: 11/8/2024
+  Bugfixes:
+    - Fixed machine recipes being available from the start (Sorry for not fixing this sooner)
+    - Fixed packing recipes showing in the character menu
+    - Router GUI now has a proper close button
+  Minor Features:
+    - The router can now output 8 unique shipping labels per lane instead of 6
+---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 11/8/2024
   Bugfixes:
@@ -6,7 +15,7 @@ Date: 11/8/2024
     - The Router no longer creates annoying chatspam
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.0
-Date: 11/7/2024
+Date: 11/6/2024
   Major Features:
     - Initial release
     - Packer; Packs items into labeled packages
